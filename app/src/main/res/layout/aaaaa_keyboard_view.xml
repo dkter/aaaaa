@@ -15,9 +15,9 @@
 
         <Button
             android:id="@+id/btnA"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="#FFFFFF"
             android:text="@string/a"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
@@ -34,10 +34,10 @@
 
             <ImageButton
                 android:id="@+id/btnBackspace"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="16dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
                 android:contentDescription="@string/backspace"
                 android:src="@drawable/ic_backspace"
                 app:srcCompat="@drawable/ic_backspace"
@@ -45,20 +45,19 @@
 
             <Button
                 android:id="@+id/btnSpace"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:background="#FFFFFF"
                 android:text="@string/space"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
             <ImageButton
                 android:id="@+id/btnReturn"
-                style="@style/Widget.AppCompat.ImageButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="16dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="#FFFFFF"
                 android:contentDescription="@string/enter"
                 android:src="@drawable/ic_return"
                 app:srcCompat="@drawable/ic_return"
