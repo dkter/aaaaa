@@ -9,4 +9,6 @@
     <string name="enableKeyboardSubheader">To use this keyboard, you need to enable it in settings.</string>
     <string name="openKeyboardSettings">Click to open keyboard settings</string>
     <string name="closeKeyboardSettingsReminder">I already did, please go away</string>
+
+    <string name="testBoxPlaceholder">Test your new keyboard here</string>
 </resources>
