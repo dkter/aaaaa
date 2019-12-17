@@ -17,6 +17,7 @@
         <Button
             android:id="@+id/btnA"
             style="@style/Widget.AppCompat.Button.Borderless"
+            android:hapticFeedbackEnabled="true"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:text="@string/a"
@@ -36,6 +37,7 @@
             <ImageButton
                 android:id="@+id/btnBackspace"
                 style="@style/Widget.AppCompat.Button.Borderless"
+                android:hapticFeedbackEnabled="true"
                 android:layout_width="16dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -47,6 +49,7 @@
             <Button
                 android:id="@+id/btnSpace"
                 style="@style/Widget.AppCompat.Button.Borderless"
+                android:hapticFeedbackEnabled="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
@@ -56,6 +59,7 @@
             <ImageButton
                 android:id="@+id/btnReturn"
                 style="@style/Widget.AppCompat.Button.Borderless"
+                android:hapticFeedbackEnabled="true"
                 android:layout_width="16dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

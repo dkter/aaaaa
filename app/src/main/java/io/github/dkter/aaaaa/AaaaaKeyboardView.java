@@ -2,6 +2,7 @@ package io.github.dkter.aaaaa;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,6 +47,8 @@ public class AaaaaKeyboardView extends ConstraintLayout implements View.OnClickL
 
     public void onClick(View v) {
         int id = v.getId();
+        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+
         if (id == R.id.btnA) {
             this.keyboardListener.onA();
         }
