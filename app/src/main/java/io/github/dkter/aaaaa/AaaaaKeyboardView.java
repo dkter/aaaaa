@@ -1,6 +1,7 @@
 package io.github.dkter.aaaaa;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.AttributeSet;
 import android.view.HapticFeedbackConstants;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ public class AaaaaKeyboardView extends ConstraintLayout implements View.OnClickL
     private ImageButton btnReturn;
 
     private AaaaaKeyboardListener keyboardListener;
+    private SharedPreferences preferences;
 
     public AaaaaKeyboardView(Context context) {
         super(context);
@@ -39,6 +41,8 @@ public class AaaaaKeyboardView extends ConstraintLayout implements View.OnClickL
         btnBackspace.setOnClickListener(this);
         btnSpace.setOnClickListener(this);
         btnReturn.setOnClickListener(this);
+
+        preferences = context.getSharedPreferences(context.getString(R.string.preferenceFileKey), Context.MODE_PRIVATE);
     }
 
     public void setKeyboardListener(AaaaaKeyboardListener listener) {
@@ -47,7 +51,8 @@ public class AaaaaKeyboardView extends ConstraintLayout implements View.OnClickL
 
     public void onClick(View v) {
         int id = v.getId();
-        v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
+        if (preferences.getBoolean(getContext().getString(R.string.hapticFeedbackKey), true))
+            v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY);
 
         if (id == R.id.btnA) {
             this.keyboardListener.onA();

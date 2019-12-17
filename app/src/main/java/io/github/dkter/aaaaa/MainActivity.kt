@@ -1,14 +1,13 @@
 package io.github.dkter.aaaaa
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 
 class MainActivity : AppCompatActivity(), TextWatcher {
 
@@ -16,8 +15,24 @@ class MainActivity : AppCompatActivity(), TextWatcher {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val testBox = findViewById<EditText>(R.id.testBox);
-        testBox.addTextChangedListener(this);
+        val preferences = getSharedPreferences(getString(R.string.preferenceFileKey), Context.MODE_PRIVATE)
+
+        val testBox = findViewById<EditText>(R.id.testBox)
+        testBox.addTextChangedListener(this)
+
+        val hapticFeedbackSwitch = findViewById<Switch>(R.id.enableHapticFeedback)
+        hapticFeedbackSwitch.isChecked = preferences.getBoolean(getString(R.string.hapticFeedbackKey), true)
+        hapticFeedbackSwitch.setOnCheckedChangeListener { view: CompoundButton, enabled: Boolean ->
+            with (preferences.edit()) {
+                putBoolean(getString(R.string.hapticFeedbackKey), enabled)
+                commit()
+            }
+
+            if (!enabled) {
+                val toast = Toast.makeText(this, "you monster", Toast.LENGTH_SHORT)
+                toast.show()
+            }
+        }
     }
 
     fun keyboardSettings(v: View) {
