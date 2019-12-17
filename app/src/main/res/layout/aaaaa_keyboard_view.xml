@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:background="#FFFFFF"
+        android:background="@drawable/keyboard_shadow"
+        android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
