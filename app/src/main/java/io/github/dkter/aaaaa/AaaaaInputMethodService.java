@@ -1,8 +1,17 @@
+/*
+ * Copyright (c) David Teresi 2019.
+ *
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at http://mozilla.org/MPL/2.0/.
+ *
+ * This Source Code Form is "Incompatible With Secondary Licenses", as
+ * defined by the Mozilla Public License, v. 2.0.
+ */
+
 package io.github.dkter.aaaaa;
 
 import android.inputmethodservice.InputMethodService;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.InputConnection;
@@ -11,11 +20,6 @@ public class AaaaaInputMethodService extends InputMethodService implements Aaaaa
 
     @Override
     public View onCreateInputView() {
-        // get the KeyboardView and add our Keyboard layout to it
-        //View keyboardView = (View) getLayoutInflater().inflate(R.layout.aaaaa_keyboard_view, null);
-        //Keyboard keyboard = new Keyboard(this, R.xml.keyboard);
-        //keyboardView.setKeyboard(keyboard);
-        //keyboardView.setOnKeyboardActionListener(this);
         AaaaaKeyboardView keyboardView = new AaaaaKeyboardView(this);
         keyboardView.setKeyboardListener(this);
         return keyboardView;
