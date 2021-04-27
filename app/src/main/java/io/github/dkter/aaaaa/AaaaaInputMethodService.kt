@@ -16,8 +16,7 @@ import android.view.inputmethod.InputConnection
 class AaaaaInputMethodService: InputMethodService(), AaaaaKeyboardView.AaaaaKeyboardListener {
 
     override fun onCreateInputView(): View {
-        val keyboardView = AaaaaKeyboardView(this)
-        keyboardView.setKeyboardListener(this)
+        val keyboardView = AaaaaKeyboardView(this, this)
         return keyboardView
     }
 
