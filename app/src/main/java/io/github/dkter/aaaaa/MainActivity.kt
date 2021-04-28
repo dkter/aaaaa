@@ -48,7 +48,9 @@ class MainActivity: AppCompatActivity(), TextWatcher {
                 if (!enabled) {
                     val toast = Toast.makeText(
                         /*context=*/this,
-                        /*text=*/"you monster",
+                        /*text=*/getString(
+                            R.string.toastDisableHapticFeedback
+                        ),
                         /*duration=*/Toast.LENGTH_SHORT,
                     )
                     toast.show()
@@ -67,7 +69,7 @@ class MainActivity: AppCompatActivity(), TextWatcher {
     fun closeKeyboardSettingsReminder(v: View) {
         val toast = Toast.makeText(
             /*context=*/this,
-            /*text=*/"Feature not implemented",
+            /*text=*/getString(R.string.toastFeatureNotImplemented),
             /*duration=*/Toast.LENGTH_SHORT,
         )
         toast.show()
@@ -90,7 +92,7 @@ class MainActivity: AppCompatActivity(), TextWatcher {
             val withoutA = text.replace("a".toRegex(), "")
             val errorField = findViewById<TextView>(R.id.testBoxErrorField)
             if (!withoutA.isBlank()) {
-                errorField.text = "Error: invalid characters detected"
+                errorField.text = getString(R.string.errorInvalidCharacters)
             }
             else {
                 errorField.text = ""

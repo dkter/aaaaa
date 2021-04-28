@@ -18,7 +18,11 @@
     <string name="openKeyboardSettings">Click to open keyboard settings</string>
     <string name="closeKeyboardSettingsReminder">I already did, please go away</string>
 
+    <string name="toastFeatureNotImplemented">Feature not implemented</string>
+    <string name="toastDisableHapticFeedback">you monster</string>
+
     <string name="testBoxPlaceholder">Test your new keyboard here</string>
+    <string name="errorInvalidCharacters">Error: invalid characters detected</string>
 
     <string name="settingsHeader">Settings</string>
     <string name="enableHapticFeedback">Enable haptic feedback</string>
