@@ -39,24 +39,31 @@ class MainActivity: AppCompatActivity(), TextWatcher {
             true,
         )
         hapticFeedbackSwitch.setOnCheckedChangeListener(
-            { view: CompoundButton, enabled: Boolean ->
-                with (preferences.edit()) {
-                    putBoolean(getString(R.string.hapticFeedbackKey), enabled)
-                    commit()
-                }
-
-                if (!enabled) {
-                    val toast = Toast.makeText(
-                        /*context=*/this,
-                        /*text=*/getString(
-                            R.string.toastDisableHapticFeedback
-                        ),
-                        /*duration=*/Toast.LENGTH_SHORT,
-                    )
-                    toast.show()
-                }
-            }
+            this::onHapticFeedbackSettingChange
         )
+    }
+
+    fun onHapticFeedbackSettingChange(
+        view: CompoundButton, enabled: Boolean
+    ) {
+        val preferences = getSharedPreferences(
+            getString(R.string.preferenceFileKey),
+            Context.MODE_PRIVATE,
+        )
+
+        with (preferences.edit()) {
+            putBoolean(getString(R.string.hapticFeedbackKey), enabled)
+            commit()
+        }
+
+        if (!enabled) {
+            val toast = Toast.makeText(
+                /*context=*/this,
+                /*text=*/getString(R.string.toastDisableHapticFeedback),
+                /*duration=*/Toast.LENGTH_SHORT,
+            )
+            toast.show()
+        }
     }
 
     fun keyboardSettings(v: View) {
