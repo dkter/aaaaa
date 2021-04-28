@@ -20,7 +20,10 @@ import android.widget.ImageButton
 
 import androidx.constraintlayout.widget.ConstraintLayout
 
-class AaaaaKeyboardView(context: Context, keyboardListener: AaaaaKeyboardListener): ConstraintLayout(context), View.OnClickListener {
+class AaaaaKeyboardView(
+    context: Context,
+    keyboardListener: AaaaaKeyboardListener,
+): ConstraintLayout(context), View.OnClickListener {
     interface AaaaaKeyboardListener {
         fun onA()
         fun onBackspace()
@@ -37,7 +40,14 @@ class AaaaaKeyboardView(context: Context, keyboardListener: AaaaaKeyboardListene
     private val preferences: SharedPreferences
 
     init {
-        LayoutInflater.from(getContext()).inflate(R.layout.aaaaa_keyboard_view, this, true)
+        // For some reason Kotlin calls these parameters p0, p1 and p2, so I
+        // have to comment out the *actual* parameter names.
+        // Have I mentioned how much I absolutely detest this language
+        LayoutInflater.from(context).inflate(
+            /*resource=*/R.layout.aaaaa_keyboard_view,
+            /*root=*/this,
+            /*attachToRoot=*/true,
+        )
 
         this.btnA = findViewById<Button>(R.id.btnA)
         this.btnBackspace = findViewById<ImageButton>(R.id.btnBackspace)
@@ -50,12 +60,19 @@ class AaaaaKeyboardView(context: Context, keyboardListener: AaaaaKeyboardListene
         this.btnReturn.setOnClickListener(this)
 
         this.keyboardListener = keyboardListener
-        this.preferences = context.getSharedPreferences(context.getString(R.string.preferenceFileKey), Context.MODE_PRIVATE)
+        this.preferences = context.getSharedPreferences(
+            context.getString(R.string.preferenceFileKey),
+            Context.MODE_PRIVATE,
+        )
+    }
+
+    private fun getBooleanPref(key: Int): Boolean {
+        return preferences.getBoolean(getContext().getString(key), true)
     }
 
     override fun onClick(v: View) {
         val id = v.getId()
-        if (preferences.getBoolean(getContext().getString(R.string.hapticFeedbackKey), true))
+        if (this.getBooleanPref(R.string.hapticFeedbackKey))
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
         if (id == R.id.btnA) {

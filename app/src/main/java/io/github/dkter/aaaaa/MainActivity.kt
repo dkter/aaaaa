@@ -17,51 +17,75 @@ import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 
-class MainActivity : AppCompatActivity(), TextWatcher {
+class MainActivity: AppCompatActivity(), TextWatcher {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val preferences = getSharedPreferences(getString(R.string.preferenceFileKey), Context.MODE_PRIVATE)
+        val preferences = getSharedPreferences(
+            getString(R.string.preferenceFileKey),
+            Context.MODE_PRIVATE,
+        )
 
         val testBox = findViewById<EditText>(R.id.testBox)
         testBox.addTextChangedListener(this)
 
-        val hapticFeedbackSwitch = findViewById<Switch>(R.id.enableHapticFeedback)
-        hapticFeedbackSwitch.isChecked = preferences.getBoolean(getString(R.string.hapticFeedbackKey), true)
-        hapticFeedbackSwitch.setOnCheckedChangeListener { view: CompoundButton, enabled: Boolean ->
-            with (preferences.edit()) {
-                putBoolean(getString(R.string.hapticFeedbackKey), enabled)
-                commit()
-            }
+        val hapticFeedbackSwitch = findViewById<Switch>(
+            R.id.enableHapticFeedback
+        )
+        hapticFeedbackSwitch.isChecked = preferences.getBoolean(
+            getString(R.string.hapticFeedbackKey),
+            true,
+        )
+        hapticFeedbackSwitch.setOnCheckedChangeListener(
+            { view: CompoundButton, enabled: Boolean ->
+                with (preferences.edit()) {
+                    putBoolean(getString(R.string.hapticFeedbackKey), enabled)
+                    commit()
+                }
 
-            if (!enabled) {
-                val toast = Toast.makeText(this, "you monster", Toast.LENGTH_SHORT)
-                toast.show()
+                if (!enabled) {
+                    val toast = Toast.makeText(
+                        /*context=*/this,
+                        /*text=*/"you monster",
+                        /*duration=*/Toast.LENGTH_SHORT,
+                    )
+                    toast.show()
+                }
             }
-        }
+        )
     }
 
     fun keyboardSettings(v: View) {
-        val intent = Intent(android.provider.Settings.ACTION_INPUT_METHOD_SETTINGS)
+        val intent = Intent(
+            android.provider.Settings.ACTION_INPUT_METHOD_SETTINGS
+        )
         startActivity(intent)
     }
 
     fun closeKeyboardSettingsReminder(v: View) {
-        val toast = Toast.makeText(this, "Feature not implemented", Toast.LENGTH_SHORT)
+        val toast = Toast.makeText(
+            /*context=*/this,
+            /*text=*/"Feature not implemented",
+            /*duration=*/Toast.LENGTH_SHORT,
+        )
         toast.show()
     }
 
-    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
+    override fun beforeTextChanged(
+        s: CharSequence?, start: Int, count: Int, after: Int
+    ) {
+        // This is necessary because this class implements TextWatcher
     }
 
     override fun afterTextChanged(editable: Editable) {
-
+        // This is necessary because this class implements TextWatcher
     }
 
-    override fun onTextChanged(text: CharSequence?, p1: Int, p2: Int, p3: Int) {
+    override fun onTextChanged(
+        text: CharSequence?, start: Int, before: Int, count: Int
+    ) {
         if (text != null) {
             val withoutA = text.replace("a".toRegex(), "")
             val errorField = findViewById<TextView>(R.id.testBoxErrorField)

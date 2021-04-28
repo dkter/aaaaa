@@ -13,10 +13,14 @@ import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.InputConnection
 
-class AaaaaInputMethodService: InputMethodService(), AaaaaKeyboardView.AaaaaKeyboardListener {
-
+class AaaaaInputMethodService:
+    InputMethodService(),
+    AaaaaKeyboardView.AaaaaKeyboardListener {
     override fun onCreateInputView(): View {
-        val keyboardView = AaaaaKeyboardView(this, this)
+        val keyboardView = AaaaaKeyboardView(
+            context=this,
+            keyboardListener=this,
+        )
         return keyboardView
     }
 
