@@ -13,7 +13,8 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:theme="@style/AppTheme">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -52,7 +53,8 @@
                 android:contentDescription="@string/backspace"
                 android:src="@drawable/ic_backspace"
                 app:srcCompat="@drawable/ic_backspace"
-                tools:srcCompat="@drawable/ic_backspace" />
+                tools:srcCompat="@drawable/ic_backspace"
+                android:tint="?attr/colorControlNormal" />
 
             <Button
                 android:id="@+id/btnSpace"
@@ -74,7 +76,8 @@
                 android:contentDescription="@string/enter"
                 android:src="@drawable/ic_return"
                 app:srcCompat="@drawable/ic_return"
-                tools:srcCompat="@drawable/ic_return" />
+                tools:srcCompat="@drawable/ic_return"
+                android:tint="?attr/colorControlNormal" />
 
         </LinearLayout>
 

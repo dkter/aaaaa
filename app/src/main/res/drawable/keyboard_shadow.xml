@@ -11,7 +11,7 @@
 
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#eeeeee"/>
+            <solid android:color="@color/colorShadow" />
         </shape>
     </item>
 
@@ -21,7 +21,7 @@
         android:top="1dp"
         android:bottom="0dp">
         <shape android:shape="rectangle">
-            <solid android:color="#ffffff"/>
+            <solid android:color="?android:attr/windowBackground"/>
         </shape>
     </item>
 </layer-list>
