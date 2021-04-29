@@ -11,12 +11,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory app:title="@string/settingsHeader">
+    <PreferenceCategory
+        app:title="@string/settingsHeader"
+        app:iconSpaceReserved="false">
 
         <SwitchPreferenceCompat
             app:key="@string/hapticFeedbackKey"
             app:title="@string/enableHapticFeedback"
-            app:defaultValue="true" />
+            app:defaultValue="true"
+            app:iconSpaceReserved="false" />
 
     </PreferenceCategory>
 
