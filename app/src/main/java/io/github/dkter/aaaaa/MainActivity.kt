@@ -8,14 +8,54 @@
 
 package io.github.dkter.aaaaa
 
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.widget.*
+
+class SettingsFragment:
+    PreferenceFragmentCompat(),
+    Preference.OnPreferenceChangeListener
+{
+    override fun onCreatePreferences(
+        savedInstanceState: Bundle?, rootKey: String?
+    ) {
+        setPreferencesFromResource(R.xml.preferences, rootKey)
+
+        val hapticFeedbackPreference: Preference? = findPreference(
+            getString(R.string.hapticFeedbackKey)
+        )
+        if (hapticFeedbackPreference != null)
+            hapticFeedbackPreference.onPreferenceChangeListener = this
+    }
+
+    override fun onPreferenceChange(
+        preference: Preference, 
+        newValue: Any
+    ): Boolean {
+        if (
+            preference.key == getString(R.string.hapticFeedbackKey)
+            && newValue == false
+        ) {
+            val toast = Toast.makeText(
+                /*context=*/context,
+                /*text=*/getString(R.string.toastDisableHapticFeedback),
+                /*duration=*/Toast.LENGTH_SHORT,
+            )
+            toast.show()
+        }
+
+        return true
+    }
+}
 
 class MainActivity: AppCompatActivity(), TextWatcher {
 
@@ -23,47 +63,10 @@ class MainActivity: AppCompatActivity(), TextWatcher {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val preferences = getSharedPreferences(
-            getString(R.string.preferenceFileKey),
-            Context.MODE_PRIVATE,
-        )
-
-        val testBox = findViewById<EditText>(R.id.testBox)
-        testBox.addTextChangedListener(this)
-
-        val hapticFeedbackSwitch = findViewById<Switch>(
-            R.id.enableHapticFeedback
-        )
-        hapticFeedbackSwitch.isChecked = preferences.getBoolean(
-            getString(R.string.hapticFeedbackKey),
-            true,
-        )
-        hapticFeedbackSwitch.setOnCheckedChangeListener(
-            this::onHapticFeedbackSettingChange
-        )
-    }
-
-    fun onHapticFeedbackSettingChange(
-        view: CompoundButton, enabled: Boolean
-    ) {
-        val preferences = getSharedPreferences(
-            getString(R.string.preferenceFileKey),
-            Context.MODE_PRIVATE,
-        )
-
-        with (preferences.edit()) {
-            putBoolean(getString(R.string.hapticFeedbackKey), enabled)
-            commit()
-        }
-
-        if (!enabled) {
-            val toast = Toast.makeText(
-                /*context=*/this,
-                /*text=*/getString(R.string.toastDisableHapticFeedback),
-                /*duration=*/Toast.LENGTH_SHORT,
-            )
-            toast.show()
-        }
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.settingsContainer, SettingsFragment())
+            .commit()
     }
 
     fun keyboardSettings(v: View) {

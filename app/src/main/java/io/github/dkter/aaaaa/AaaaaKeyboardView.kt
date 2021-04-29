@@ -19,6 +19,7 @@ import android.widget.Button
 import android.widget.ImageButton
 
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.preference.PreferenceManager
 
 class AaaaaKeyboardView(
     context: Context,
@@ -60,9 +61,8 @@ class AaaaaKeyboardView(
         this.btnReturn.setOnClickListener(this)
 
         this.keyboardListener = keyboardListener
-        this.preferences = context.getSharedPreferences(
-            context.getString(R.string.preferenceFileKey),
-            Context.MODE_PRIVATE,
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(
+            context
         )
     }
 

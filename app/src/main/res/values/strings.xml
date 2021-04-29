@@ -27,6 +27,5 @@
     <string name="settingsHeader">Settings</string>
     <string name="enableHapticFeedback">Enable haptic feedback</string>
 
-    <string name="preferenceFileKey">io.github.dkter.aaaaa.preferences</string>
     <string name="hapticFeedbackKey">io.github.dkter.aaaaa.enableHapticFeedback</string>
 </resources>
