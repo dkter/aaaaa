@@ -11,6 +11,7 @@ package io.github.dkter.aaaaa
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.AttributeSet
+import android.view.ContextThemeWrapper
 import android.view.HapticFeedbackConstants
 import android.view.LayoutInflater
 import android.view.View
@@ -41,10 +42,23 @@ class AaaaaKeyboardView(
     private val preferences: SharedPreferences
 
     init {
+        this.preferences = PreferenceManager.getDefaultSharedPreferences(
+            context
+        )
+
+        val themeSetting = getStringPref(R.string.themeSettingKey)
+        val themeId = if (themeSetting == "MODE_NIGHT_NO") {
+            R.style.AppThemeLight
+        } else if (themeSetting == "MODE_NIGHT_YES") {
+            R.style.AppThemeDark
+        } else {  // MODE_NIGHT_FOLLOW_SYSTEM
+            R.style.AppTheme
+        }
+        val wrapper = ContextThemeWrapper(context, themeId)
         // For some reason Kotlin calls these parameters p0, p1 and p2, so I
         // have to comment out the *actual* parameter names.
         // Have I mentioned how much I absolutely detest this language
-        LayoutInflater.from(context).inflate(
+        LayoutInflater.from(wrapper).inflate(
             /*resource=*/R.layout.aaaaa_keyboard_view,
             /*root=*/this,
             /*attachToRoot=*/true,
@@ -61,13 +75,14 @@ class AaaaaKeyboardView(
         this.btnReturn.setOnClickListener(this)
 
         this.keyboardListener = keyboardListener
-        this.preferences = PreferenceManager.getDefaultSharedPreferences(
-            context
-        )
     }
 
     private fun getBooleanPref(key: Int): Boolean {
-        return preferences.getBoolean(getContext().getString(key), true)
+        return this.preferences.getBoolean(context.getString(key), true)
+    }
+
+    private fun getStringPref(key: Int): String {
+        return this.preferences.getString(context.getString(key), "")!!
     }
 
     override fun onClick(v: View) {

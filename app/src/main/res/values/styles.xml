@@ -12,6 +12,24 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorShadow">@color/colorShadow</item>
+        <item name="colorSpaceBar">@color/colorSpaceBar</item>
+    </style>
+
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorShadow">@color/colorShadow</item>
+        <item name="colorSpaceBar">@color/colorSpaceBar</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorShadow">@color/colorShadowDark</item>
+        <item name="colorSpaceBar">?attr/colorControlNormal</item>
     </style>
 
     <style name="AButtonText" parent="TextAppearance.AppCompat">
@@ -22,7 +40,7 @@
 
     <style name="SpaceButtonText" parent="TextAppearance.AppCompat">
         <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">@color/colorSpaceBar</item>
+        <item name="android:textColor">?attr/colorSpaceBar</item>
         <item name="android:textSize">18dp</item>
     </style>
 

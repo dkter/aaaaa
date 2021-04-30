@@ -10,7 +10,9 @@ package io.github.dkter.aaaaa
 
 import android.inputmethodservice.InputMethodService
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
 
 class AaaaaInputMethodService:
@@ -22,6 +24,10 @@ class AaaaaInputMethodService:
             keyboardListener=this,
         )
         return keyboardView
+    }
+
+    override fun onStartInputView(info: EditorInfo, restarting: Boolean) {
+        setInputView(onCreateInputView())
     }
 
     private fun inputChar(ch: Char) {

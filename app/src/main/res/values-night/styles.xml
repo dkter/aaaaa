@@ -8,10 +8,12 @@
 
 <resources>
 
-    <style name="SpaceButtonText" parent="TextAppearance.AppCompat">
-        <item name="android:textAllCaps">false</item>
-        <item name="android:textColor">?attr/colorControlNormal</item>
-        <item name="android:textSize">18dp</item>
+    <style name="AppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorShadow">@color/colorShadowDark</item>
+        <item name="colorSpaceBar">?attr/colorControlNormal</item>
     </style>
 
 </resources>

@@ -8,5 +8,6 @@
   -->
 
 <resources>
-    <color name="colorShadow">#444444</color>
+    <attr name="colorShadow" format="color" />
+    <attr name="colorSpaceBar" format="color" />
 </resources>
