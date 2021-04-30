@@ -21,6 +21,15 @@
             app:defaultValue="true"
             app:iconSpaceReserved="false" />
 
+        <ListPreference
+            app:key="@string/themeSettingKey"
+            app:title="@string/themeSetting"
+            app:entries="@array/themeEntries"
+            app:entryValues="@array/themeValues"
+            app:defaultValue="MODE_NIGHT_FOLLOW_SYSTEM"
+            app:useSimpleSummaryProvider="true"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

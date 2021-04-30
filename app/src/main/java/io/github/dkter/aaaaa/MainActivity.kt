@@ -9,6 +9,7 @@
 package io.github.dkter.aaaaa
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -20,6 +21,25 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import android.widget.*
+
+fun setDefaultNightMode(context: Context, theme: String? = null) {
+    val preferences = PreferenceManager.getDefaultSharedPreferences(context)
+    val themeSetting = if (theme == null) {
+        preferences.getString(context.getString(R.string.themeSettingKey), "")
+    } else theme
+
+    val mode = if (themeSetting == "MODE_NIGHT_NO") {
+        AppCompatDelegate.MODE_NIGHT_NO
+    } else if (themeSetting == "MODE_NIGHT_YES") {
+        AppCompatDelegate.MODE_NIGHT_YES
+    } else if (themeSetting == "MODE_NIGHT_FOLLOW_SYSTEM") {
+        AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
+    } else {
+        AppCompatDelegate.MODE_NIGHT_UNSPECIFIED
+    }
+
+    AppCompatDelegate.setDefaultNightMode(mode)
+}
 
 class SettingsFragment:
     PreferenceFragmentCompat(),
@@ -33,8 +53,11 @@ class SettingsFragment:
         val hapticFeedbackPreference: Preference? = findPreference(
             getString(R.string.hapticFeedbackKey)
         )
-        if (hapticFeedbackPreference != null)
-            hapticFeedbackPreference.onPreferenceChangeListener = this
+        hapticFeedbackPreference!!.onPreferenceChangeListener = this
+        val themePreference: Preference? = findPreference(
+            getString(R.string.themeSettingKey)
+        )
+        themePreference!!.onPreferenceChangeListener = this
     }
 
     override fun onPreferenceChange(
@@ -52,6 +75,9 @@ class SettingsFragment:
             )
             toast.show()
         }
+        else if (preference.key == getString(R.string.themeSettingKey)) {
+            setDefaultNightMode(context!!, newValue as String)
+        }
 
         return true
     }
@@ -62,6 +88,7 @@ class MainActivity: AppCompatActivity(), TextWatcher {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setDefaultNightMode(this)
 
         supportFragmentManager
             .beginTransaction()
