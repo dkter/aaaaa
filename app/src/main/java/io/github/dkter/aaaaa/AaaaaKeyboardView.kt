@@ -46,6 +46,11 @@ class AaaaaKeyboardView(
             context
         )
 
+        // I have to set the theme manually here, because when I call
+        // setDefaultNightMode it doesn't apply to the keyboard for some
+        // reason. AppThemeLight and AppThemeDark are functionally identical
+        // to the light and dark modes of AppTheme.
+        // https://stackoverflow.com/a/67340930/5253369
         val themeSetting = getStringPref(R.string.themeSettingKey)
         val themeId = if (themeSetting == "MODE_NIGHT_NO") {
             R.style.AppThemeLight

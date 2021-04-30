@@ -27,6 +27,10 @@ class AaaaaInputMethodService:
     }
 
     override fun onStartInputView(info: EditorInfo, restarting: Boolean) {
+        // Since the theme is set when the keyboard is created, we need to
+        // recreate the keyboard every time the keyboard is started.
+        // Otherwise the theme can't be changed without killing the aaaaa
+        // app entirely and restarting it.
         setInputView(onCreateInputView())
     }
 

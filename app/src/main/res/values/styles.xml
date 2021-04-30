@@ -16,6 +16,14 @@
         <item name="colorSpaceBar">@color/colorSpaceBar</item>
     </style>
 
+    <!--
+        AppThemeLight and AppThemeDark should be identical to the light and
+        dark modes of AppTheme.
+        To be more specific, the values of AppThemeLight should be the same
+        as the values of AppTheme here, and the values of AppThemeDark should
+        be the same as the values of AppTheme in values-night/styles.xml
+    -->
+
     <style name="AppThemeLight" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
