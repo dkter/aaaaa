@@ -76,7 +76,7 @@ class SettingsFragment:
             toast.show()
         }
         else if (preference.key == getString(R.string.themeSettingKey)) {
-            setDefaultNightMode(context!!, newValue as String)
+            setDefaultNightMode(requireContext(), newValue as String)
         }
 
         return true
