@@ -48,7 +48,10 @@ class AaaaaInputMethodService:
     }
 
     override fun onLongA() {
-        TODO("Not yet implemented")
+        for (i in 0..25) {
+            val uppercase = (0..1).random() == 1
+            inputChar(if (uppercase) 'A' else 'a')
+        }
     }
 
     override fun onBackspace() {
