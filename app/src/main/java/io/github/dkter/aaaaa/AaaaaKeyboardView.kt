@@ -25,9 +25,10 @@ import androidx.preference.PreferenceManager
 class AaaaaKeyboardView(
     context: Context,
     keyboardListener: AaaaaKeyboardListener,
-): ConstraintLayout(context), View.OnClickListener {
+): ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener {
     interface AaaaaKeyboardListener {
         fun onA()
+        fun onLongA()
         fun onBackspace()
         fun onSpace()
         fun onReturn()
@@ -107,5 +108,13 @@ class AaaaaKeyboardView(
         else if (id == R.id.btnReturn) {
             this.keyboardListener.onReturn()
         }
+    }
+
+    override fun onLongClick(v: View): Boolean {
+        val id = v.getId()
+        if (id == R.id.btnA) {
+            this.keyboardListener.onLongA()
+        }
+        return true
     }
 }

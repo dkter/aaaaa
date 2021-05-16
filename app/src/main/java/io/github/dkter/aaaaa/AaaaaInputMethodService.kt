@@ -47,6 +47,10 @@ class AaaaaInputMethodService:
         inputChar('a')
     }
 
+    override fun onLongA() {
+        TODO("Not yet implemented")
+    }
+
     override fun onBackspace() {
         val ic: InputConnection? = getCurrentInputConnection()
         if (ic == null) {
