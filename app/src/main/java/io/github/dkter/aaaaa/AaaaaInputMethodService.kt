@@ -15,6 +15,7 @@ import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
+import kotlin.concurrent.thread
 
 class AaaaaInputMethodService:
     InputMethodService(),
@@ -48,9 +49,12 @@ class AaaaaInputMethodService:
     }
 
     override fun onLongA() {
-        for (i in 0..25) {
-            val uppercase = (0..1).random() == 1
-            inputChar(if (uppercase) 'A' else 'a')
+        thread {
+            for (i in 0..25) {
+                val uppercase = (0..1).random() == 1
+                inputChar(if (uppercase) 'A' else 'a')
+                Thread.sleep(100L)
+            }
         }
     }
 
