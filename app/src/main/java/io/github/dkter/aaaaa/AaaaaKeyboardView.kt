@@ -10,25 +10,23 @@ package io.github.dkter.aaaaa
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.AttributeSet
-import android.view.ContextThemeWrapper
-import android.view.HapticFeedbackConstants
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.util.Log
+import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
-
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.preference.PreferenceManager
 
 class AaaaaKeyboardView(
     context: Context,
     keyboardListener: AaaaaKeyboardListener,
-): ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener {
+) : ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener,
+    View.OnTouchListener {
     interface AaaaaKeyboardListener {
         fun onA()
         fun onLongA()
+        fun onPressA()
+        fun onReleaseA()
         fun onBackspace()
         fun onSpace()
         fun onReturn()
@@ -81,6 +79,7 @@ class AaaaaKeyboardView(
         this.btnReturn.setOnClickListener(this)
 
         this.btnA.setOnLongClickListener(this)
+        this.btnA.setOnTouchListener(this)
 
         this.keyboardListener = keyboardListener
     }
@@ -118,5 +117,19 @@ class AaaaaKeyboardView(
             this.keyboardListener.onLongA()
         }
         return true
+    }
+
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        val id = v?.id
+        val action = event?.action
+        if (id == R.id.btnA) {
+            when (action) {
+                MotionEvent.ACTION_CANCEL -> return false
+                MotionEvent.ACTION_DOWN -> keyboardListener.onPressA()
+                MotionEvent.ACTION_UP -> keyboardListener.onReleaseA()
+            }
+            return true
+        }
+        return false
     }
 }
