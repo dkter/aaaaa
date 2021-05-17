@@ -58,6 +58,14 @@ class AaaaaInputMethodService:
         }
     }
 
+    override fun onPressA() {
+
+    }
+
+    override fun onReleaseA() {
+        onA()
+    }
+
     override fun onBackspace() {
         val ic: InputConnection? = getCurrentInputConnection()
         if (ic == null) {
