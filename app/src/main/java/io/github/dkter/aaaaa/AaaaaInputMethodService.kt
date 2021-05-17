@@ -18,7 +18,7 @@ import kotlin.concurrent.thread
 
 class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKeyboardListener {
 
-    private fun makeLongPressThread() = thread(start = false) {
+    private fun newLongPressThread() = thread {
         while (!Thread.currentThread().isInterrupted) {
             val uppercase = (0..1).random() == 1
             inputChar(if (uppercase) 'A' else 'a')
@@ -57,7 +57,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onPressA() {
-        longPressThread = makeLongPressThread().apply { start() }
+        longPressThread = newLongPressThread()
     }
 
     override fun onReleaseA() {
