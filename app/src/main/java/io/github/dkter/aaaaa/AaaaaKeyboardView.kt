@@ -10,7 +10,6 @@ package io.github.dkter.aaaaa
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
@@ -20,11 +19,8 @@ import androidx.preference.PreferenceManager
 class AaaaaKeyboardView(
     context: Context,
     keyboardListener: AaaaaKeyboardListener,
-) : ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener,
-    View.OnTouchListener {
+) : ConstraintLayout(context), View.OnClickListener, View.OnTouchListener {
     interface AaaaaKeyboardListener {
-        fun onA()
-        fun onLongA()
         fun onPressA()
         fun onReleaseA()
         fun onBackspace()
@@ -73,12 +69,9 @@ class AaaaaKeyboardView(
         this.btnSpace = findViewById<Button>(R.id.btnSpace)
         this.btnReturn = findViewById<ImageButton>(R.id.btnReturn)
 
-        this.btnA.setOnClickListener(this)
         this.btnBackspace.setOnClickListener(this)
         this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
-
-        this.btnA.setOnLongClickListener(this)
         this.btnA.setOnTouchListener(this)
 
         this.keyboardListener = keyboardListener
@@ -96,10 +89,6 @@ class AaaaaKeyboardView(
         val id = v.getId()
         if (this.getBooleanPref(R.string.hapticFeedbackKey))
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
-
-        if (id == R.id.btnA) {
-            this.keyboardListener.onA()
-        }
         else if (id == R.id.btnBackspace) {
             this.keyboardListener.onBackspace()
         }
@@ -109,14 +98,6 @@ class AaaaaKeyboardView(
         else if (id == R.id.btnReturn) {
             this.keyboardListener.onReturn()
         }
-    }
-
-    override fun onLongClick(v: View): Boolean {
-        val id = v.getId()
-        if (id == R.id.btnA) {
-            this.keyboardListener.onLongA()
-        }
-        return true
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
