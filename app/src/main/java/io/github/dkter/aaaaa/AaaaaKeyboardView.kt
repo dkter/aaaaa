@@ -8,6 +8,7 @@
 
 package io.github.dkter.aaaaa
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.view.*
@@ -16,6 +17,7 @@ import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.preference.PreferenceManager
 
+@SuppressLint("ClickableViewAccessibility")
 class AaaaaKeyboardView(
     context: Context,
     keyboardListener: AaaaaKeyboardListener,
@@ -72,7 +74,7 @@ class AaaaaKeyboardView(
         this.btnReturn = findViewById<ImageButton>(R.id.btnReturn)
 
         this.btnA.setOnLongClickListener(this)
-        this.btnA.setOnTouchListener(this) // TODO accessibility
+        this.btnA.setOnTouchListener(this)
         this.btnA.setOnClickListener(this)
         this.btnBackspace.setOnClickListener(this)
         this.btnSpace.setOnClickListener(this)
