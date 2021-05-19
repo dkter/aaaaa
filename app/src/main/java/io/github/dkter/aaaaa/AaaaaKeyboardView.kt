@@ -71,13 +71,12 @@ class AaaaaKeyboardView(
         this.btnSpace = findViewById<Button>(R.id.btnSpace)
         this.btnReturn = findViewById<ImageButton>(R.id.btnReturn)
 
+        this.btnA.setOnLongClickListener(this)
+        this.btnA.setOnTouchListener(this) // TODO accessibility
         this.btnA.setOnClickListener(this)
         this.btnBackspace.setOnClickListener(this)
         this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
-
-        this.btnA.setOnLongClickListener(this)
-        this.btnA.setOnTouchListener(this)
 
         this.keyboardListener = keyboardListener
     }
