@@ -10,7 +10,6 @@ package io.github.dkter.aaaaa
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.Log
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
@@ -25,7 +24,6 @@ class AaaaaKeyboardView(
     interface AaaaaKeyboardListener {
         fun onA()
         fun onLongA()
-        fun onPressA()
         fun onReleaseA()
         fun onBackspace()
         fun onSpace()
@@ -113,23 +111,18 @@ class AaaaaKeyboardView(
 
     override fun onLongClick(v: View): Boolean {
         val id = v.getId()
-        if (id == R.id.btnA) {
+        return if (id == R.id.btnA) {
             this.keyboardListener.onLongA()
-        }
-        return true
+            true
+        } else false
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
         val id = v?.id
         val action = event?.action
-        if (id == R.id.btnA) {
-            when (action) {
-                MotionEvent.ACTION_CANCEL -> return false
-                MotionEvent.ACTION_DOWN -> keyboardListener.onPressA()
-                MotionEvent.ACTION_UP -> keyboardListener.onReleaseA()
-            }
-            return true
-        }
+
+        if (id == R.id.btnA && action == MotionEvent.ACTION_UP) keyboardListener.onReleaseA()
+
         return false
     }
 }

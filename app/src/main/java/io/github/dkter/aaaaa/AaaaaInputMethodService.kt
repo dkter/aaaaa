@@ -61,16 +61,6 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onLongA() {
-        thread {
-            for (i in 0..25) {
-                val uppercase = (0..1).random() == 1
-                inputChar(if (uppercase) 'A' else 'a')
-                Thread.sleep(100L)
-            }
-        }
-    }
-
-    override fun onPressA() {
         longPressThread = newLongPressThread()
     }
 
