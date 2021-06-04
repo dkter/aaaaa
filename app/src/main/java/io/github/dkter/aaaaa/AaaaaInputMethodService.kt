@@ -20,8 +20,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     private fun newLongPressThread() = thread {
         while (!Thread.currentThread().isInterrupted) {
-            val uppercase = (0..1).random() == 1
-            inputChar(if (uppercase) 'A' else 'a')
+            inputChar('a')
             try {
                 Thread.sleep(100L)
             } catch (e: InterruptedException) {
