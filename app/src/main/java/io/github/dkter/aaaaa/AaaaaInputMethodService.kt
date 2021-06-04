@@ -48,6 +48,11 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
         setInputView(onCreateInputView())
     }
 
+    override fun onFinishInputView(finishingInput: Boolean) {
+        super.onFinishInputView(finishingInput)
+        longPressThread?.interrupt()
+    }
+
     private fun inputChar(ch: Char) {
         val ic: InputConnection? = getCurrentInputConnection()
         if (ic == null) {
