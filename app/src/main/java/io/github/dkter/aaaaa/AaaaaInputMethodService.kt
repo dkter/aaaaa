@@ -20,7 +20,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     private fun newLongPressThread() = thread {
         while (!Thread.currentThread().isInterrupted) {
-            inputChar('a')
+            inputChar(if (isUppercase) 'A' else 'a')
             try {
                 Thread.sleep(100L)
             } catch (e: InterruptedException) {
@@ -30,6 +30,8 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     private var longPressThread: Thread? = null
+
+    private var isUppercase = false
 
     override fun onCreateInputView(): View {
         val keyboardView = AaaaaKeyboardView(
@@ -61,7 +63,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onA() {
-        inputChar('a')
+        inputChar(if (isUppercase) 'A' else 'a')
     }
 
     override fun onLongA() {
@@ -98,6 +100,10 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onUppercase() {
-        // TODO
+        isUppercase = true
+    }
+
+    override fun onLowercase() {
+        isUppercase = false
     }
 }

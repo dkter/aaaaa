@@ -32,6 +32,7 @@ class AaaaaKeyboardView(
         fun onSpace()
         fun onReturn()
         fun onUppercase()
+        fun onLowercase()
     }
 
     private val btnA: Button
@@ -42,6 +43,8 @@ class AaaaaKeyboardView(
 
     private val keyboardListener: AaaaaKeyboardListener
     private val preferences: SharedPreferences
+
+    private var isUppercase = false
 
     init {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(
@@ -106,7 +109,11 @@ class AaaaaKeyboardView(
             R.id.btnBackspace -> keyboardListener.onBackspace()
             R.id.btnSpace -> keyboardListener.onSpace()
             R.id.btnReturn -> keyboardListener.onReturn()
-            R.id.btnUppercase -> keyboardListener.onUppercase()
+            R.id.btnUppercase -> {
+                isUppercase = !isUppercase
+                btnA.text = if (isUppercase) "A" else "a"
+                if (isUppercase) keyboardListener.onUppercase() else keyboardListener.onLowercase()
+            }
         }
     }
 
