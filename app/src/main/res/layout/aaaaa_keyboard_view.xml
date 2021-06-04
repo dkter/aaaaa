@@ -6,7 +6,7 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
@@ -14,58 +14,65 @@
     android:layout_height="180dp"
     android:background="@drawable/keyboard_shadow"
     android:elevation="8dp"
+    android:orientation="horizontal"
     tools:layout_gravity="bottom">
 
-
-    <Button
-        android:id="@+id/btnA"
-        style="@style/Widget.AppCompat.Button.Borderless"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:hapticFeedbackEnabled="true"
-        android:text="@string/a"
-        android:textAppearance="@style/AButtonText"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/btnBackspace"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="16dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/backspace"
             android:hapticFeedbackEnabled="true"
             android:src="@drawable/ic_backspace"
             android:tint="?attr/colorControlNormal"
             app:srcCompat="@drawable/ic_backspace"
             tools:srcCompat="@drawable/ic_backspace" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnA"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:hapticFeedbackEnabled="true"
+            android:text="@string/a"
+            android:textAppearance="@style/AButtonText" />
 
         <Button
             android:id="@+id/btnSpace"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:hapticFeedbackEnabled="true"
             android:text="@string/space"
             android:textAppearance="@style/SpaceButtonText" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical">
 
         <ImageButton
             android:id="@+id/btnReturn"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="16dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/enter"
             android:hapticFeedbackEnabled="true"
             android:src="@drawable/ic_return"
@@ -75,4 +82,4 @@
 
     </LinearLayout>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>
