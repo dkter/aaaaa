@@ -25,7 +25,7 @@
     <string name="errorInvalidCharacters">Error: invalid characters detected</string>
 
     <string name="settingsHeader">Settings</string>
-    <string name="enableHapticFeedback">Enable haptic feedback</string>
+    <string name="enableHapticFeedback">Enable haptic feedback on tap</string>
     <string name="themeSetting">Theme</string>
 
     <string name="hapticFeedbackKey">io.github.dkter.aaaaa.enableHapticFeedback</string>
