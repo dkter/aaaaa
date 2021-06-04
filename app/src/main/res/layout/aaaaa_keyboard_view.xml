@@ -24,6 +24,18 @@
         android:orientation="vertical">
 
         <ImageButton
+            android:id="@+id/btnUppercase"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/uppercase"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_keyboard_caps"
+            android:tint="?attr/colorControlNormal"
+            app:srcCompat="@drawable/ic_keyboard_caps"
+            tools:srcCompat="@drawable/ic_keyboard_caps" />
+
+        <ImageButton
             android:id="@+id/btnBackspace"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="match_parent"

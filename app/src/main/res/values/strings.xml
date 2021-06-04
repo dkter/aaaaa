@@ -30,4 +30,5 @@
 
     <string name="hapticFeedbackKey">io.github.dkter.aaaaa.enableHapticFeedback</string>
     <string name="themeSettingKey">io.github.dkter.aaaaa.themeSetting</string>
+    <string name="uppercase">Caps lock</string>
 </resources>
