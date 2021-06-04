@@ -10,15 +10,27 @@ package io.github.dkter.aaaaa
 
 import android.inputmethodservice.InputMethodService
 import android.text.TextUtils
-import android.util.Log
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputConnection
+import kotlin.concurrent.thread
 
-class AaaaaInputMethodService:
-    InputMethodService(),
-    AaaaaKeyboardView.AaaaaKeyboardListener {
+class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKeyboardListener {
+
+    private fun newLongPressThread() = thread {
+        while (!Thread.currentThread().isInterrupted) {
+            inputChar('a')
+            try {
+                Thread.sleep(100L)
+            } catch (e: InterruptedException) {
+                break
+            }
+        }
+    }
+
+    private var longPressThread: Thread? = null
+
     override fun onCreateInputView(): View {
         val keyboardView = AaaaaKeyboardView(
             context=this,
@@ -35,6 +47,11 @@ class AaaaaInputMethodService:
         setInputView(onCreateInputView())
     }
 
+    override fun onFinishInputView(finishingInput: Boolean) {
+        super.onFinishInputView(finishingInput)
+        longPressThread?.interrupt()
+    }
+
     private fun inputChar(ch: Char) {
         val ic: InputConnection? = getCurrentInputConnection()
         if (ic == null) {
@@ -45,6 +62,15 @@ class AaaaaInputMethodService:
 
     override fun onA() {
         inputChar('a')
+    }
+
+    override fun onLongA() {
+        longPressThread?.interrupt()
+        longPressThread = newLongPressThread()
+    }
+
+    override fun onReleaseA() {
+        longPressThread?.interrupt()
     }
 
     override fun onBackspace() {

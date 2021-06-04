@@ -8,26 +8,25 @@
 
 package io.github.dkter.aaaaa
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.AttributeSet
-import android.view.ContextThemeWrapper
-import android.view.HapticFeedbackConstants
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
-
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.preference.PreferenceManager
 
+@SuppressLint("ClickableViewAccessibility")
 class AaaaaKeyboardView(
     context: Context,
     keyboardListener: AaaaaKeyboardListener,
-): ConstraintLayout(context), View.OnClickListener {
+) : ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener,
+    View.OnTouchListener {
     interface AaaaaKeyboardListener {
         fun onA()
+        fun onLongA()
+        fun onReleaseA()
         fun onBackspace()
         fun onSpace()
         fun onReturn()
@@ -74,6 +73,8 @@ class AaaaaKeyboardView(
         this.btnSpace = findViewById<Button>(R.id.btnSpace)
         this.btnReturn = findViewById<ImageButton>(R.id.btnReturn)
 
+        this.btnA.setOnLongClickListener(this)
+        this.btnA.setOnTouchListener(this)
         this.btnA.setOnClickListener(this)
         this.btnBackspace.setOnClickListener(this)
         this.btnSpace.setOnClickListener(this)
@@ -107,5 +108,22 @@ class AaaaaKeyboardView(
         else if (id == R.id.btnReturn) {
             this.keyboardListener.onReturn()
         }
+    }
+
+    override fun onLongClick(v: View): Boolean {
+        val id = v.getId()
+        return if (id == R.id.btnA) {
+            this.keyboardListener.onLongA()
+            true
+        } else false
+    }
+
+    override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+        val id = v?.id
+        val action = event?.action
+
+        if (id == R.id.btnA && action == MotionEvent.ACTION_UP) keyboardListener.onReleaseA()
+
+        return false
     }
 }
