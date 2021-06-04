@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (c) David Teresi 2021.
   ~
   ~ This Source Code Form is subject to the terms of the Mozilla Public
@@ -12,74 +11,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_height="180dp"
+    android:background="@drawable/keyboard_shadow"
+    android:elevation="8dp"
+    tools:layout_gravity="bottom">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <Button
+        android:id="@+id/btnA"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:hapticFeedbackEnabled="true"
+        android:text="@string/a"
+        android:textAppearance="@style/AButtonText"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:background="@drawable/keyboard_shadow"
-        android:elevation="8dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <Button
-            android:id="@+id/btnA"
+        <ImageButton
+            android:id="@+id/btnBackspace"
             style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/backspace"
             android:hapticFeedbackEnabled="true"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="@string/a"
-            android:textAppearance="@style/AButtonText"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/ic_backspace"
+            android:tint="?attr/colorControlNormal"
+            app:srcCompat="@drawable/ic_backspace"
+            tools:srcCompat="@drawable/ic_backspace" />
 
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="match_parent"
+        <Button
+            android:id="@+id/btnSpace"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent">
+            android:layout_weight="2"
+            android:hapticFeedbackEnabled="true"
+            android:text="@string/space"
+            android:textAppearance="@style/SpaceButtonText" />
 
-            <ImageButton
-                android:id="@+id/btnBackspace"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:hapticFeedbackEnabled="true"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/backspace"
-                android:src="@drawable/ic_backspace"
-                app:srcCompat="@drawable/ic_backspace"
-                tools:srcCompat="@drawable/ic_backspace"
-                android:tint="?attr/colorControlNormal" />
+        <ImageButton
+            android:id="@+id/btnReturn"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="16dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:contentDescription="@string/enter"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_return"
+            android:tint="?attr/colorControlNormal"
+            app:srcCompat="@drawable/ic_return"
+            tools:srcCompat="@drawable/ic_return" />
 
-            <Button
-                android:id="@+id/btnSpace"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:hapticFeedbackEnabled="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:text="@string/space"
-                android:textAppearance="@style/SpaceButtonText" />
-
-            <ImageButton
-                android:id="@+id/btnReturn"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:hapticFeedbackEnabled="true"
-                android:layout_width="16dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:contentDescription="@string/enter"
-                android:src="@drawable/ic_return"
-                app:srcCompat="@drawable/ic_return"
-                tools:srcCompat="@drawable/ic_return"
-                android:tint="?attr/colorControlNormal" />
-
-        </LinearLayout>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
