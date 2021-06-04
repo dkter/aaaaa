@@ -66,6 +66,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onLongA() {
+        longPressThread?.interrupt()
         longPressThread = newLongPressThread()
     }
 
