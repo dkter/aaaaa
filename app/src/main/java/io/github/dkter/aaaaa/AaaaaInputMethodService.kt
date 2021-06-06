@@ -96,4 +96,8 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     override fun onReturn() {
         sendDownUpKeyEvents(KeyEvent.KEYCODE_ENTER)
     }
+
+    override fun onLongBackspace() {
+        TODO()
+    }
 }

@@ -30,6 +30,7 @@ class AaaaaKeyboardView(
         fun onBackspace()
         fun onSpace()
         fun onReturn()
+        fun onLongBackspace()
     }
 
     private val btnA: Button
@@ -79,6 +80,7 @@ class AaaaaKeyboardView(
         this.btnBackspace.setOnClickListener(this)
         this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
+        this.btnReturn.setOnLongClickListener(this)
 
         this.keyboardListener = keyboardListener
     }
@@ -112,10 +114,17 @@ class AaaaaKeyboardView(
 
     override fun onLongClick(v: View): Boolean {
         val id = v.getId()
-        return if (id == R.id.btnA) {
-            this.keyboardListener.onLongA()
-            true
-        } else false
+        return when (id) {
+            R.id.btnA -> {
+                this.keyboardListener.onLongA()
+                true
+            }
+            R.id.btnBackspace -> {
+                this.keyboardListener.onLongBackspace()
+                true
+            }
+            else -> false
+        }
     }
 
     override fun onTouch(v: View?, event: MotionEvent?): Boolean {
