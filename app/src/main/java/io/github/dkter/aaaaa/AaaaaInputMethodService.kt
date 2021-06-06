@@ -29,7 +29,8 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
         }
     }
 
-    private var longPressThread: Thread? = null
+    private var aRepeatThread: Thread? = null
+    private var backspaceRepeatThread: Thread? = null
 
     override fun onCreateInputView(): View {
         val keyboardView = AaaaaKeyboardView(
@@ -49,7 +50,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     override fun onFinishInputView(finishingInput: Boolean) {
         super.onFinishInputView(finishingInput)
-        longPressThread?.interrupt()
+        aRepeatThread?.interrupt()
     }
 
     private fun inputChar(ch: Char) {
@@ -65,12 +66,12 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onLongA() {
-        longPressThread?.interrupt()
-        longPressThread = repeatThread { onA() }
+        aRepeatThread?.interrupt()
+        aRepeatThread = repeatThread { onA() }
     }
 
     override fun onReleaseA() {
-        longPressThread?.interrupt()
+        aRepeatThread?.interrupt()
     }
 
     override fun onBackspace() {
@@ -98,10 +99,11 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onLongBackspace() {
-        TODO()
+        backspaceRepeatThread?.interrupt()
+        backspaceRepeatThread = repeatThread { onBackspace() }
     }
 
     override fun onReleaseBackspace() {
-        TODO()
+        backspaceRepeatThread?.interrupt()
     }
 }
