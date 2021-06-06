@@ -18,11 +18,11 @@ import kotlin.concurrent.thread
 
 class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKeyboardListener {
 
-    private fun newLongPressThread() = thread {
+    private fun repeatThread(delay: Long = 100L, action: () -> Unit) = thread {
         while (!Thread.currentThread().isInterrupted) {
-            inputChar('a')
             try {
-                Thread.sleep(100L)
+                action()
+                Thread.sleep(delay)
             } catch (e: InterruptedException) {
                 break
             }
@@ -66,7 +66,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     override fun onLongA() {
         longPressThread?.interrupt()
-        longPressThread = newLongPressThread()
+        longPressThread = repeatThread { onA() }
     }
 
     override fun onReleaseA() {
