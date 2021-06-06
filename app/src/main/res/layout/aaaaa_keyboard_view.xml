@@ -6,7 +6,7 @@
   ~ file, You can obtain one at http://mozilla.org/MPL/2.0/.
   -->
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/constraintLayout"
@@ -17,42 +17,19 @@
     android:orientation="horizontal"
     tools:layout_gravity="bottom">
 
-    <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="vertical">
-
-        <ImageButton
-            android:id="@+id/btnUppercase"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/uppercase"
-            android:hapticFeedbackEnabled="true"
-            android:src="@drawable/ic_keyboard_caps"
-            android:tint="?attr/colorControlNormal"
-            app:srcCompat="@drawable/ic_keyboard_caps"
-            tools:srcCompat="@drawable/ic_keyboard_caps" />
-
         <ImageButton
             android:id="@+id/btnBackspace"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:contentDescription="@string/backspace"
             android:hapticFeedbackEnabled="true"
             android:src="@drawable/ic_backspace"
             android:tint="?attr/colorControlNormal"
             app:srcCompat="@drawable/ic_backspace"
-            tools:srcCompat="@drawable/ic_backspace" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
+            tools:srcCompat="@drawable/ic_backspace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <Button
             android:id="@+id/btnA"
@@ -62,36 +39,50 @@
             android:layout_weight="1"
             android:hapticFeedbackEnabled="true"
             android:text="@string/a"
-            android:textAppearance="@style/AButtonText" />
+            android:textAppearance="@style/AButtonText"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/btnSpace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btnUppercase"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/uppercase"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_keyboard_caps"
+            android:tint="?attr/colorControlNormal"
+            app:srcCompat="@drawable/ic_keyboard_caps"
+            tools:srcCompat="@drawable/ic_keyboard_caps"
+            app:layout_constraintBottom_toTopOf="@id/btnBackspace"
+            app:layout_constraintStart_toStartOf="parent"/>
 
         <Button
             android:id="@+id/btnSpace"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:hapticFeedbackEnabled="true"
             android:text="@string/space"
-            android:textAppearance="@style/SpaceButtonText" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="80dp"
-        android:layout_height="match_parent"
-        android:gravity="bottom"
-        android:orientation="vertical">
+            android:textAppearance="@style/SpaceButtonText"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/btnBackspace"
+            app:layout_constraintEnd_toStartOf="@id/btnReturn"/>
 
         <ImageButton
             android:id="@+id/btnReturn"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="match_parent"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:contentDescription="@string/enter"
             android:hapticFeedbackEnabled="true"
             android:src="@drawable/ic_return"
             android:tint="?attr/colorControlNormal"
             app:srcCompat="@drawable/ic_return"
-            tools:srcCompat="@drawable/ic_return" />
+            tools:srcCompat="@drawable/ic_return"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
