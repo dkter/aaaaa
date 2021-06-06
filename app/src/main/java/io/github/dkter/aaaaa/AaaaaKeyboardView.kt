@@ -11,13 +11,10 @@ package io.github.dkter.aaaaa
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
-import android.util.TypedValue
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import androidx.preference.PreferenceManager
 import kotlinx.android.synthetic.main.aaaaa_keyboard_view.view.*
 
@@ -115,11 +112,6 @@ class AaaaaKeyboardView(
             R.id.btnUppercase -> {
                 isUppercase = !isUppercase
                 btnA.text = if (isUppercase) "A" else "a"
-                btnUppercase.drawable
-                    .setTint(
-                        if (isUppercase) ContextCompat.getColor(context, R.color.colorPrimary)
-                        else TODO()
-                    )
                 if (isUppercase) keyboardListener.onUppercase() else keyboardListener.onLowercase()
             }
         }
