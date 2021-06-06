@@ -79,10 +79,10 @@ class AaaaaKeyboardView(
         this.btnA.setOnTouchListener(this)
         this.btnA.setOnClickListener(this)
         this.btnBackspace.setOnClickListener(this)
+        this.btnBackspace.setOnTouchListener(this)
+        this.btnBackspace.setOnLongClickListener(this)
         this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
-        this.btnReturn.setOnTouchListener(this)
-        this.btnReturn.setOnLongClickListener(this)
 
         this.keyboardListener = keyboardListener
     }
