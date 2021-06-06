@@ -100,4 +100,8 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     override fun onLongBackspace() {
         TODO()
     }
+
+    override fun onReleaseBackspace() {
+        TODO()
+    }
 }

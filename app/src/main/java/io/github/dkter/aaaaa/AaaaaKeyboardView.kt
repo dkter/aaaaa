@@ -31,6 +31,7 @@ class AaaaaKeyboardView(
         fun onSpace()
         fun onReturn()
         fun onLongBackspace()
+        fun onReleaseBackspace()
     }
 
     private val btnA: Button
@@ -80,6 +81,7 @@ class AaaaaKeyboardView(
         this.btnBackspace.setOnClickListener(this)
         this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
+        this.btnReturn.setOnTouchListener(this)
         this.btnReturn.setOnLongClickListener(this)
 
         this.keyboardListener = keyboardListener
@@ -131,7 +133,14 @@ class AaaaaKeyboardView(
         val id = v?.id
         val action = event?.action
 
-        if (id == R.id.btnA && action == MotionEvent.ACTION_UP) keyboardListener.onReleaseA()
+        when (id) {
+            R.id.btnA -> {
+                if (action == MotionEvent.ACTION_UP) keyboardListener.onReleaseA()
+            }
+            R.id.btnBackspace -> {
+                if (action == MotionEvent.ACTION_UP) keyboardListener.onReleaseBackspace()
+            }
+        }
 
         return false
     }
