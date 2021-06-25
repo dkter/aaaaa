@@ -51,6 +51,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     override fun onFinishInputView(finishingInput: Boolean) {
         super.onFinishInputView(finishingInput)
         aRepeatThread?.interrupt()
+        backspaceRepeatThread?.interrupt()
     }
 
     private fun inputChar(ch: Char) {
