@@ -115,19 +115,7 @@ class AaaaaKeyboardView(
             R.id.btnReturn -> keyboardListener.onReturn()
             R.id.btnUppercase -> {
                 isUppercase = !isUppercase
-                if (isUppercase) {
-                    btnA.text = "A"
-                    //btnUppercase.drawable.setTint(
-                    //    MaterialColors.getColor(this, R.attr.colorControlNormal)
-                    //) FIXME throws IllegalArgumentException
-                    keyboardListener.onUppercase()
-                } else {
-                    btnA.text = "a"
-                    btnUppercase.drawable.setTint(
-                        ContextCompat.getColor(context, R.color.colorPrimary)
-                    )
-                    keyboardListener.onLowercase()
-                }
+                if (isUppercase) onUppercase() else onLowercase()
             }
         }
     }
@@ -147,5 +135,21 @@ class AaaaaKeyboardView(
         if (id == R.id.btnA && action == MotionEvent.ACTION_UP) keyboardListener.onReleaseA()
 
         return false
+    }
+
+    private fun onUppercase() {
+        btnA.text = "A"
+        //btnUppercase.drawable.setTint(
+        //    MaterialColors.getColor(this, R.attr.colorControlNormal)
+        //) FIXME throws IllegalArgumentException
+        keyboardListener.onUppercase()
+    }
+
+    private fun onLowercase() {
+        btnA.text = "a"
+        btnUppercase.drawable.setTint(
+            ContextCompat.getColor(context, R.color.colorPrimary)
+        )
+        keyboardListener.onLowercase()
     }
 }
