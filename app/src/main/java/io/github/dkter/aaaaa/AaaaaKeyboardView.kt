@@ -15,8 +15,9 @@ import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
 import androidx.preference.PreferenceManager
-import kotlinx.android.synthetic.main.aaaaa_keyboard_view.view.*
+import com.google.android.material.color.MaterialColors
 
 @SuppressLint("ClickableViewAccessibility")
 class AaaaaKeyboardView(
@@ -69,9 +70,12 @@ class AaaaaKeyboardView(
         // have to comment out the *actual* parameter names.
         // Have I mentioned how much I absolutely detest this language
         LayoutInflater.from(wrapper).inflate(
-            /*resource=*/R.layout.aaaaa_keyboard_view,
-            /*root=*/this,
-            /*attachToRoot=*/true,
+            /*resource=*/
+            R.layout.aaaaa_keyboard_view,
+            /*root=*/
+            this,
+            /*attachToRoot=*/
+            true,
         )
 
         this.btnA = findViewById<Button>(R.id.btnA)
@@ -111,8 +115,19 @@ class AaaaaKeyboardView(
             R.id.btnReturn -> keyboardListener.onReturn()
             R.id.btnUppercase -> {
                 isUppercase = !isUppercase
-                btnA.text = if (isUppercase) "A" else "a"
-                if (isUppercase) keyboardListener.onUppercase() else keyboardListener.onLowercase()
+                if (isUppercase) {
+                    btnA.text = "A"
+                    //btnUppercase.drawable.setTint(
+                    //    MaterialColors.getColor(this, R.attr.colorControlNormal)
+                    //) FIXME throws IllegalArgumentException
+                    keyboardListener.onUppercase()
+                } else {
+                    btnA.text = "a"
+                    btnUppercase.drawable.setTint(
+                        ContextCompat.getColor(context, R.color.colorPrimary)
+                    )
+                    keyboardListener.onLowercase()
+                }
             }
         }
     }
