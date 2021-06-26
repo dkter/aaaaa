@@ -70,12 +70,9 @@ class AaaaaKeyboardView(
         // have to comment out the *actual* parameter names.
         // Have I mentioned how much I absolutely detest this language
         LayoutInflater.from(wrapper).inflate(
-            /*resource=*/
-            R.layout.aaaaa_keyboard_view,
-            /*root=*/
-            this,
-            /*attachToRoot=*/
-            true,
+            /*resource=*/R.layout.aaaaa_keyboard_view,
+            /*root=*/this,
+            /*attachToRoot=*/true,
         )
 
         this.btnA = findViewById<Button>(R.id.btnA)
