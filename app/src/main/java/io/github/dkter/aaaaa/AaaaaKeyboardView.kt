@@ -14,10 +14,11 @@ import android.content.SharedPreferences
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.use
 import androidx.preference.PreferenceManager
-import com.google.android.material.color.MaterialColors
 
 @SuppressLint("ClickableViewAccessibility")
 class AaaaaKeyboardView(
@@ -44,6 +45,7 @@ class AaaaaKeyboardView(
 
     private val keyboardListener: AaaaaKeyboardListener
     private val preferences: SharedPreferences
+    private val themeWrapper = ContextThemeWrapper(context, AppCompatDelegate.getDefaultNightMode())
 
     private var isUppercase = false
 
@@ -136,17 +138,18 @@ class AaaaaKeyboardView(
 
     private fun onUppercase() {
         btnA.text = "A"
-        //btnUppercase.drawable.setTint(
-        //    MaterialColors.getColor(this, R.attr.colorControlNormal)
-        //) FIXME throws IllegalArgumentException
+        val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+        btnUppercase.drawable.setTint(colorPrimary)
         keyboardListener.onUppercase()
     }
 
     private fun onLowercase() {
         btnA.text = "a"
-        btnUppercase.drawable.setTint(
-            ContextCompat.getColor(context, R.color.colorPrimary)
-        )
+        val colorControlNormal = themeWrapper
+                .theme
+                .obtainStyledAttributes(intArrayOf(android.R.attr.colorControlNormal))
+                .use { it.getColor(0, 0) }
+        btnUppercase.drawable.setTint(colorControlNormal)
         keyboardListener.onLowercase()
     }
 }
