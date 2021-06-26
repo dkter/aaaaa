@@ -54,6 +54,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
         super.onFinishInputView(finishingInput)
         aRepeatThread?.interrupt()
         backspaceRepeatThread?.interrupt()
+        isUppercase = false
     }
 
     private fun inputChar(ch: Char) {
