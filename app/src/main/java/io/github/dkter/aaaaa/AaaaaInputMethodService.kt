@@ -18,18 +18,19 @@ import kotlin.concurrent.thread
 
 class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKeyboardListener {
 
-    private fun newLongPressThread() = thread {
+    private fun repeatThread(delay: Long = 100L, action: () -> Unit) = thread {
         while (!Thread.currentThread().isInterrupted) {
-            inputChar(if (isUppercase) 'A' else 'a')
             try {
-                Thread.sleep(100L)
+                action()
+                Thread.sleep(delay)
             } catch (e: InterruptedException) {
                 break
             }
         }
     }
 
-    private var longPressThread: Thread? = null
+    private var aRepeatThread: Thread? = null
+    private var backspaceRepeatThread: Thread? = null
 
     private var isUppercase = false
 
@@ -51,7 +52,8 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     override fun onFinishInputView(finishingInput: Boolean) {
         super.onFinishInputView(finishingInput)
-        longPressThread?.interrupt()
+        aRepeatThread?.interrupt()
+        backspaceRepeatThread?.interrupt()
     }
 
     private fun inputChar(ch: Char) {
@@ -67,12 +69,12 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     }
 
     override fun onLongA() {
-        longPressThread?.interrupt()
-        longPressThread = newLongPressThread()
+        aRepeatThread?.interrupt()
+        aRepeatThread = repeatThread { onA() }
     }
 
     override fun onReleaseA() {
-        longPressThread?.interrupt()
+        aRepeatThread?.interrupt()
     }
 
     override fun onBackspace() {
@@ -105,5 +107,14 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     override fun onLowercase() {
         isUppercase = false
+    }
+
+    override fun onLongBackspace() {
+        backspaceRepeatThread?.interrupt()
+        backspaceRepeatThread = repeatThread { onBackspace() }
+    }
+
+    override fun onReleaseBackspace() {
+        backspaceRepeatThread?.interrupt()
     }
 }
