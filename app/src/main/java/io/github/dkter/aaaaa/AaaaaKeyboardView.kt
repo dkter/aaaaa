@@ -27,14 +27,13 @@ class AaaaaKeyboardView(
 ) : ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener,
     View.OnTouchListener {
     interface AaaaaKeyboardListener {
+        var isUppercase: Boolean
         fun onA()
         fun onLongA()
         fun onReleaseA()
         fun onBackspace()
         fun onSpace()
         fun onReturn()
-        fun onUppercase()
-        fun onLowercase()
         fun onLongBackspace()
         fun onReleaseBackspace()
     }
@@ -48,8 +47,6 @@ class AaaaaKeyboardView(
     private val keyboardListener: AaaaaKeyboardListener
     private val preferences: SharedPreferences
     private val themeWrapper: ContextThemeWrapper
-
-    private var isUppercase = false
 
     init {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(
@@ -117,8 +114,8 @@ class AaaaaKeyboardView(
             R.id.btnSpace -> keyboardListener.onSpace()
             R.id.btnReturn -> keyboardListener.onReturn()
             R.id.btnUppercase -> {
-                isUppercase = !isUppercase
-                if (isUppercase) onUppercase() else onLowercase()
+                keyboardListener.isUppercase = !keyboardListener.isUppercase
+                if (keyboardListener.isUppercase) onUppercase() else onLowercase()
             }
         }
     }
@@ -158,7 +155,6 @@ class AaaaaKeyboardView(
         btnA.text = "A"
         val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
         btnUppercase.drawable.setTint(colorPrimary)
-        keyboardListener.onUppercase()
     }
 
     private fun onLowercase() {
@@ -168,6 +164,5 @@ class AaaaaKeyboardView(
                 .obtainStyledAttributes(intArrayOf(android.R.attr.colorControlNormal))
                 .use { it.getColor(0, 0) }
         btnUppercase.drawable.setTint(colorControlNormal)
-        keyboardListener.onLowercase()
     }
 }

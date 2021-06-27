@@ -32,7 +32,7 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
     private var aRepeatThread: Thread? = null
     private var backspaceRepeatThread: Thread? = null
 
-    private var isUppercase = false
+    override var isUppercase = false
 
     override fun onCreateInputView(): View {
         val keyboardView = AaaaaKeyboardView(
@@ -100,14 +100,6 @@ class AaaaaInputMethodService : InputMethodService(), AaaaaKeyboardView.AaaaaKey
 
     override fun onReturn() {
         sendDownUpKeyEvents(KeyEvent.KEYCODE_ENTER)
-    }
-
-    override fun onUppercase() {
-        isUppercase = true
-    }
-
-    override fun onLowercase() {
-        isUppercase = false
     }
 
     override fun onLongBackspace() {
