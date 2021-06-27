@@ -47,7 +47,7 @@ class AaaaaKeyboardView(
 
     private val keyboardListener: AaaaaKeyboardListener
     private val preferences: SharedPreferences
-    private val themeWrapper = ContextThemeWrapper(context, AppCompatDelegate.getDefaultNightMode())
+    private val themeWrapper: ContextThemeWrapper
 
     private var isUppercase = false
 
@@ -69,11 +69,11 @@ class AaaaaKeyboardView(
         } else {  // MODE_NIGHT_FOLLOW_SYSTEM
             R.style.AppTheme
         }
-        val wrapper = ContextThemeWrapper(context, themeId)
+        themeWrapper = ContextThemeWrapper(context, themeId)
         // For some reason Kotlin calls these parameters p0, p1 and p2, so I
         // have to comment out the *actual* parameter names.
         // Have I mentioned how much I absolutely detest this language
-        LayoutInflater.from(wrapper).inflate(
+        LayoutInflater.from(themeWrapper).inflate(
             /*resource=*/R.layout.aaaaa_keyboard_view,
             /*root=*/this,
             /*attachToRoot=*/true,
