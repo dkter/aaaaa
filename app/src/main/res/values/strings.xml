@@ -12,6 +12,7 @@
     <string name="space">space</string>
     <string name="backspace">backspace</string>
     <string name="enter">return</string>
+    <string name="uppercase">Caps lock</string>
 
     <string name="enableKeyboardHeader">Enable keyboard</string>
     <string name="enableKeyboardSubheader">To use this keyboard, you need to enable it in settings.</string>

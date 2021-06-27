@@ -14,7 +14,10 @@ import android.content.SharedPreferences
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.use
 import androidx.preference.PreferenceManager
 
 @SuppressLint("ClickableViewAccessibility")
@@ -24,6 +27,7 @@ class AaaaaKeyboardView(
 ) : ConstraintLayout(context), View.OnClickListener, View.OnLongClickListener,
     View.OnTouchListener {
     interface AaaaaKeyboardListener {
+        var isUppercase: Boolean
         fun onA()
         fun onLongA()
         fun onReleaseA()
@@ -38,9 +42,11 @@ class AaaaaKeyboardView(
     private val btnBackspace: ImageButton
     private val btnSpace: Button
     private val btnReturn: ImageButton
+    private val btnUppercase: ImageButton
 
     private val keyboardListener: AaaaaKeyboardListener
     private val preferences: SharedPreferences
+    private val themeWrapper: ContextThemeWrapper
 
     init {
         this.preferences = PreferenceManager.getDefaultSharedPreferences(
@@ -60,11 +66,11 @@ class AaaaaKeyboardView(
         } else {  // MODE_NIGHT_FOLLOW_SYSTEM
             R.style.AppTheme
         }
-        val wrapper = ContextThemeWrapper(context, themeId)
+        themeWrapper = ContextThemeWrapper(context, themeId)
         // For some reason Kotlin calls these parameters p0, p1 and p2, so I
         // have to comment out the *actual* parameter names.
         // Have I mentioned how much I absolutely detest this language
-        LayoutInflater.from(wrapper).inflate(
+        LayoutInflater.from(themeWrapper).inflate(
             /*resource=*/R.layout.aaaaa_keyboard_view,
             /*root=*/this,
             /*attachToRoot=*/true,
@@ -74,6 +80,7 @@ class AaaaaKeyboardView(
         this.btnBackspace = findViewById<ImageButton>(R.id.btnBackspace)
         this.btnSpace = findViewById<Button>(R.id.btnSpace)
         this.btnReturn = findViewById<ImageButton>(R.id.btnReturn)
+        this.btnUppercase = findViewById<ImageButton>(R.id.btnUppercase)
 
         this.btnA.setOnLongClickListener(this)
         this.btnA.setOnTouchListener(this)
@@ -83,6 +90,7 @@ class AaaaaKeyboardView(
         this.btnBackspace.setOnLongClickListener(this)
         this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
+        this.btnUppercase.setOnClickListener(this)
 
         this.keyboardListener = keyboardListener
     }
@@ -100,17 +108,15 @@ class AaaaaKeyboardView(
         if (this.getBooleanPref(R.string.hapticFeedbackKey))
             v.performHapticFeedback(HapticFeedbackConstants.VIRTUAL_KEY)
 
-        if (id == R.id.btnA) {
-            this.keyboardListener.onA()
-        }
-        else if (id == R.id.btnBackspace) {
-            this.keyboardListener.onBackspace()
-        }
-        else if (id == R.id.btnSpace) {
-            this.keyboardListener.onSpace()
-        }
-        else if (id == R.id.btnReturn) {
-            this.keyboardListener.onReturn()
+        when (id) {
+            R.id.btnA -> keyboardListener.onA()
+            R.id.btnBackspace -> keyboardListener.onBackspace()
+            R.id.btnSpace -> keyboardListener.onSpace()
+            R.id.btnReturn -> keyboardListener.onReturn()
+            R.id.btnUppercase -> {
+                keyboardListener.isUppercase = !keyboardListener.isUppercase
+                if (keyboardListener.isUppercase) onUppercase() else onLowercase()
+            }
         }
     }
 
@@ -143,5 +149,20 @@ class AaaaaKeyboardView(
         }
 
         return false
+    }
+
+    private fun onUppercase() {
+        btnA.text = "A"
+        val colorPrimary = ContextCompat.getColor(context, R.color.colorPrimary)
+        btnUppercase.drawable.setTint(colorPrimary)
+    }
+
+    private fun onLowercase() {
+        btnA.text = "a"
+        val colorControlNormal = themeWrapper
+                .theme
+                .obtainStyledAttributes(intArrayOf(android.R.attr.colorControlNormal))
+                .use { it.getColor(0, 0) }
+        btnUppercase.drawable.setTint(colorControlNormal)
     }
 }
