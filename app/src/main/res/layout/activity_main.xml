@@ -84,21 +84,21 @@
         </androidx.cardview.widget.CardView>
 
         <EditText
-            android:id="@+id/testBox"
+            android:id="@+id/textBox"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
             android:ems="10"
-            android:hint="@string/testBoxPlaceholder"
+            android:hint="@string/textBoxPlaceholder"
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
         <TextView
-            android:id="@+id/testBoxErrorField"
+            android:id="@+id/textBoxErrorField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -107,7 +107,7 @@
             android:textColor="@color/colorError"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testBox" />
+            app:layout_constraintTop_toBottomOf="@+id/textBox" />
 
         <FrameLayout
             android:id="@+id/settingsContainer"
@@ -115,7 +115,7 @@
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/testBoxErrorField">
+            app:layout_constraintTop_toBottomOf="@+id/textBoxErrorField">
 
         </FrameLayout>
 

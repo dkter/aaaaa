@@ -90,8 +90,8 @@ class MainActivity: AppCompatActivity(), TextWatcher {
         setContentView(R.layout.activity_main)
         setDefaultNightMode(this)
 
-        val testBox = findViewById<EditText>(R.id.testBox)
-        testBox.addTextChangedListener(this)
+        val textBox = findViewById<EditText>(R.id.textBox)
+        textBox.addTextChangedListener(this)
 
         supportFragmentManager
             .beginTransaction()
@@ -130,7 +130,7 @@ class MainActivity: AppCompatActivity(), TextWatcher {
     ) {
         if (text != null) {
             val withoutA = text.replace("[aA]".toRegex(), "")
-            val errorField = findViewById<TextView>(R.id.testBoxErrorField)
+            val errorField = findViewById<TextView>(R.id.textBoxErrorField)
             if (!withoutA.isBlank()) {
                 errorField.text = getString(R.string.errorInvalidCharacters)
             }

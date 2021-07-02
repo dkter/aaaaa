@@ -22,7 +22,7 @@
     <string name="toastFeatureNotImplemented">Feature not implemented</string>
     <string name="toastDisableHapticFeedback">you monster</string>
 
-    <string name="testBoxPlaceholder">Test your new keyboard here</string>
+    <string name="textBoxPlaceholder">Test your new keyboard here</string>
     <string name="errorInvalidCharacters">Error: invalid characters detected</string>
 
     <string name="settingsHeader">Settings</string>
