@@ -88,11 +88,20 @@ class AaaaaKeyboardView(
         this.btnBackspace.setOnClickListener(this)
         this.btnBackspace.setOnTouchListener(this)
         this.btnBackspace.setOnLongClickListener(this)
-        this.btnSpace.setOnClickListener(this)
         this.btnReturn.setOnClickListener(this)
-        this.btnUppercase.setOnClickListener(this)
 
         this.keyboardListener = keyboardListener
+
+        // Hide extra buttons if in minimalist mide
+        val minimalistModeSetting = getBooleanPref(R.string.minimalistModeKey)
+        if (minimalistModeSetting) {
+            this.btnSpace.visibility = View.GONE
+            this.btnUppercase.visibility = View.GONE
+        }
+        else {
+            this.btnSpace.setOnClickListener(this)
+            this.btnUppercase.setOnClickListener(this)
+        }
     }
 
     private fun getBooleanPref(key: Int): Boolean {
