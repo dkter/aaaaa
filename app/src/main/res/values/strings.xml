@@ -12,7 +12,7 @@
     <string name="space">space</string>
     <string name="backspace">backspace</string>
     <string name="enter">return</string>
-    <string name="uppercase">Caps lock</string>
+    <string name="uppercase">caps lock</string>
 
     <string name="enableKeyboardHeader">Enable keyboard</string>
     <string name="enableKeyboardSubheader">To use this keyboard, you need to enable it in settings.</string>
@@ -28,7 +28,10 @@
     <string name="settingsHeader">Settings</string>
     <string name="enableHapticFeedback">Enable haptic feedback on tap</string>
     <string name="themeSetting">Theme</string>
+    <string name="minimalistMode">Minimalist mode</string>
+    <string name="minimalistModeDesc">Disable space and caps lock keys</string>
 
     <string name="hapticFeedbackKey">io.github.dkter.aaaaa.enableHapticFeedback</string>
     <string name="themeSettingKey">io.github.dkter.aaaaa.themeSetting</string>
+    <string name="minimalistModeKey">io.github.dkter.aaaaa.minimalistMode</string>
 </resources>

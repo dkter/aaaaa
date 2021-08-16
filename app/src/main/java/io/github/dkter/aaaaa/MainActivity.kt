@@ -20,7 +20,15 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
+
+// There is no easy way to detect whether the keyboard is showing. I'm using a
+// hidden Android method here:
+// https://stackoverflow.com/a/52171843/5253369
+val inputMethodHeight = InputMethodManager::class.java.getMethod(
+    "getInputMethodWindowVisibleHeight"
+)
 
 fun setDefaultNightMode(context: Context, theme: String? = null) {
     val preferences = PreferenceManager.getDefaultSharedPreferences(context)
@@ -58,6 +66,10 @@ class SettingsFragment:
             getString(R.string.themeSettingKey)
         )
         themePreference!!.onPreferenceChangeListener = this
+        val minimalistModePreference: Preference? = findPreference(
+            getString(R.string.minimalistModeKey)
+        )
+        minimalistModePreference!!.onPreferenceChangeListener = this
     }
 
     override fun onPreferenceChange(
@@ -77,6 +89,21 @@ class SettingsFragment:
         }
         else if (preference.key == getString(R.string.themeSettingKey)) {
             setDefaultNightMode(requireContext(), newValue as String)
+        }
+        else if (preference.key == getString(R.string.minimalistModeKey)) {
+            // Restart the keyboard to apply minimalist mode setting
+            val inputMethodManager = activity?.getSystemService(
+                Context.INPUT_METHOD_SERVICE
+            ) as InputMethodManager?
+            if (
+                inputMethodManager != null
+                && (inputMethodHeight.invoke(inputMethodManager) as Int) > 0
+            ) {
+                inputMethodManager.hideSoftInputFromWindow(
+                    activity!!.currentFocus!!.windowToken, 0
+                )
+                inputMethodManager.showSoftInput(activity!!.currentFocus!!, 0)
+            }
         }
 
         return true

@@ -30,6 +30,13 @@
             app:useSimpleSummaryProvider="true"
             app:iconSpaceReserved="false" />
 
+        <SwitchPreferenceCompat
+            app:key="@string/minimalistModeKey"
+            app:title="@string/minimalistMode"
+            app:summary="@string/minimalistModeDesc"
+            app:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
     </PreferenceCategory>
 
 </PreferenceScreen>

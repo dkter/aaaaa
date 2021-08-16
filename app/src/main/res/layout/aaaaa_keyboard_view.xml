@@ -17,20 +17,6 @@
     android:orientation="horizontal"
     tools:layout_gravity="bottom">
 
-        <ImageButton
-            android:id="@+id/btnBackspace"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/backspace"
-            android:hapticFeedbackEnabled="true"
-            android:src="@drawable/ic_backspace"
-            android:tint="?attr/colorControlNormal"
-            app:srcCompat="@drawable/ic_backspace"
-            tools:srcCompat="@drawable/ic_backspace"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
-
         <Button
             android:id="@+id/btnA"
             style="@style/Widget.AppCompat.Button.Borderless"
@@ -44,6 +30,20 @@
             app:layout_constraintBottom_toTopOf="@id/btnSpace"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageButton
+            android:id="@+id/btnBackspace"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/backspace"
+            android:hapticFeedbackEnabled="true"
+            android:src="@drawable/ic_backspace"
+            android:tint="?attr/colorControlNormal"
+            app:srcCompat="@drawable/ic_backspace"
+            tools:srcCompat="@drawable/ic_backspace"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageButton
             android:id="@+id/btnUppercase"
