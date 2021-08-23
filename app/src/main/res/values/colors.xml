@@ -8,10 +8,10 @@
   -->
 
 <resources>
-    <color name="colorPrimary">#ffb300</color>
-    <color name="colorPrimaryDark">#ffa000</color>
-    <color name="colorAccent">#8bc34a</color>
-    <color name="colorError">#f44336</color>
+    <color name="colorPrimary">#03a9f4</color>
+    <color name="colorPrimaryDark">#0288d1</color>
+    <color name="colorAccent">#03a9f4</color>
+    <color name="colorError">#e91e63</color>
     <color name="colorSpaceBar">#757575</color>
     <color name="colorShadow">#eeeeee</color>
     <color name="colorShadowDark">#444444</color>
